@@ -34,13 +34,13 @@ form {
     height: 100%;
 }
 
-form label {
+label {
     display: block;
     width: 100%;
     margin-bottom: 0.5em;
 }
 
-form input {
+input {
     padding: 0.5em 1em;
     width: 95.75%;
     margin-bottom: 1em;
