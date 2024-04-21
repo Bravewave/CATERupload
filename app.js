@@ -46,10 +46,9 @@ app.post("/upload", upload.single("videoFile"), (req, res) => {
     console.log(`File uploaded to: ${updir}/${req.file.filename}`);
 
     cmd.run(`ffmpeg -i ${updir}/${req.file.filename} -r ${framerate} ${resdir}/frame%d.png`, (err, data, stderr) => {
-        console.log(data);
+        console.log(`FFMPEG frames in: ${resdir}`);
     });
 
-    console.log(`FFMPEG frames in: ${resdir}`);
 });
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
