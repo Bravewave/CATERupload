@@ -8,6 +8,8 @@ const fs = require("fs");
 const port = process.env.PORT || 3000;
 const app = express();
 
+const CATERpath = "/home/cater/CATER/build/external/Build/cater/ui/cli/cater-cli";
+
 const framerate = 24;
 
 // Setup multer storage settings
@@ -40,14 +42,25 @@ app.post("/upload", upload.single("videoFile"), (req, res) => {
 
     // If dir does not yet exist, create it
     if (!fs.existsSync(resdir)) {
-        fs.mkdirSync(resdir);
+        fs.mkdirSync(`${resdir}/frames`, { recursive: true });
+        fs.mkdirSync(`${resdir}/unary_video`, { recursive: true });
     }
 
     console.log(`File uploaded to: ${updir}/${req.file.filename}`);
 
-    cmd.run(`ffmpeg -i ${updir}/${req.file.filename} -r ${framerate} ${resdir}/frame%d.png`, (err, data, stderr) => {
-        console.log(`FFMPEG frames in: ${resdir}`);
+    cmd.run(`ffmpeg -i ${updir}/${req.file.filename} -r ${framerate} ${resdir}/frames/frame%d.png`, (err, data, stderr) => {
+        console.log(`FFMPEG frames in: ${resdir}/frames`);
+        cmd.run(`${CATERpath} init ${resdir}/frames`, (err, data, stderr) => {
+            console.log(data);
+            cmd.run(`${CATERpath} track ${resdir}/frames_output/now/results.yml`, (err, data, stderr) => {
+                cmd.run(`ffmpeg -framerate ${framerate} -i ${resdir}/frames_output/now/unaries/frame%d-unary.png -c:v libx264 -r ${framerate} ${resdir}/unary_video/${nameNoExt}_result.mp4`, (err, data, stderr) => {
+
+                });
+            });
+        });
     });
+
+    
 
 });
 
