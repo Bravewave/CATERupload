@@ -10,6 +10,7 @@ const gAuth = new google.auth.JWT(AUTH.client_email, null, AUTH.private_key, SCO
 const drive = google.drive({ version: "v3", gAuth });
 
 /**
+ * Uploads a file to a pre-determined Google Drive folder and grants a third party read access to that file
  * 
  * @param {string} filepath Absolute path to desired file
  * @param {string} email Valid email address of user to be granted access to file

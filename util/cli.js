@@ -4,12 +4,14 @@ const shell = require("shelljs");
 const CATER_PATH = "/home/cater/CATER/build/external/Build/cater/ui/cli/cater-cli";
 
 /**
+ * Runs FFMPEG and CATER CLI on a video. The resulting video of unaries is then saved locally.
  * 
- * @param {string} source 
- * @param {string} filename 
- * @param {number} framerate 
- * @param {string} destination 
- * @returns {string} Path of result video
+ * @param {string} source Path of user-uploaded video
+ * @param {string} filename Name of user-uploaded video, with file extensions
+ * @param {number} framerate Framerate to be used with FFMPEG
+ * @param {string} destination Path to folder where resulting unaries and video should be stored
+ * @param {string} nameNoExt Name of user-uploaded video, without file extensions
+ * @returns {string} Path of resulting video
  */
 function processVideo(source, filename, framerate, destination, nameNoExt){
     try {
