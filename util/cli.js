@@ -1,8 +1,5 @@
 const shell = require("shelljs");
 
-// CATER CLI settings
-const CATER_PATH = "/home/cater/CATER/build/external/Build/cater/ui/cli/cater-cli";
-
 /**
  * Runs FFMPEG and CATER CLI on a video. The resulting video of unaries is then saved locally.
  * 
@@ -22,12 +19,12 @@ function processVideo(source, filename, framerate, destination, nameNoExt){
         console.log(`FFMPEG frames in: ${destination}/frames`)
 
         // CATER - initialise process
-        if (shell.exec(`${CATER_PATH} init ${destination}/frames`).code !== 0) {
+        if (shell.exec(`${process.env.CATER_PATH} init ${destination}/frames`).code !== 0) {
             throw new Error("Error initialising CATER environment!");
         }
 
         // CATER - do tracking
-        if (shell.exec(`${CATER_PATH} track ${destination}/frames_output/now/results.yml`).code !== 0) {
+        if (shell.exec(`${process.env.CATER_PATH} track ${destination}/frames_output/now/results.yml`).code !== 0) {
             throw new Error("Error calculating CATER unaries!");
         }
 

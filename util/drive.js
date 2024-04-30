@@ -3,10 +3,8 @@ const fs = require("fs");
 const path = require("path");
 
 const AUTH = require("../auth/auth.json");
-const SCOPES = ["https://www.googleapis.com/auth/drive"];
-const DEST= "1TpAknTDqoTEDB8ote43UKb8XjpprNNVK";
 
-const gAuth = new google.auth.JWT(AUTH.client_email, null, AUTH.private_key, SCOPES);
+const gAuth = new google.auth.JWT(AUTH.client_email, null, AUTH.private_key, [process.env.SCOPES]);
 const drive = google.drive({ version: "v3", gAuth });
 
 /**
@@ -14,7 +12,7 @@ const drive = google.drive({ version: "v3", gAuth });
  * 
  * @param {string} filepath Absolute path to desired file
  * @param {string} email Valid email address of user to be granted access to file
- * @returns {Promise<number>} HTTP response code 200 or 500, for success or failure respectively
+ * @returns {Promise<string>} Sharing URL of file
  */
 async function driveUpload(filepath, email) {
     try {
@@ -37,7 +35,7 @@ async function driveUpload(filepath, email) {
             auth: gAuth,
             requestBody: {
                 name: path.basename(filepath),
-                parents: [DEST]
+                parents: [process.env.DEST]
             },
             media: {
                 mimeType: "video/mp4",
@@ -58,10 +56,10 @@ async function driveUpload(filepath, email) {
         });
     
         console.log("File uploaded and shared successfully!");
-        return 200;
+        return `https://drive.google.com/file/d/${response.data.id}/view?usp=drive_link`;
     } catch (err) {
         console.error("Error uploading file: ", err);
-        return 500;
+        return "ERROR";
     }
 };
 

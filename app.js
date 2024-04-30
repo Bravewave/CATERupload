@@ -8,6 +8,7 @@ const fs = require("fs");
 // Require helper functions from util files
 const { processVideo } = require("./util/cli");
 const { driveUpload } = require("./util/drive");
+const { generateMail } = require("./util/mail");
 
 // Initialise port value and app object
 const port = process.env.PORT || 3000;
@@ -67,11 +68,26 @@ app.post("/upload", upload.single("videoFile"), async (req, res) => {
     console.log("\n\n===== BEGIN GOOGLE DRIVE UPLOAD =====\n\n");
 
     try {
-        const status = await driveUpload(result, req.body.email);
-        console.log("Status code:", status);
+        const url = await driveUpload(result, req.body.email);
+        console.log("File uploaded at:", url);
+
+        console.log("\n\n===== BEGIN EMAIL =====\n\n");
+
+        const { transporter, mailOptions } = generateMail(req.body.email, url);
+
+        try {
+            console.log("Attempting to send email...");
+            transporter.sendMail(mailOptions);
+            console.log("Email sent successfully!");
+        } catch (err) {
+            console.error("Error with email:", err);
+            return;
+        }
     } catch (err) {
         console.error("Error with Google Drive upload process:", err);
     }
+
+    console.log("\n\n===== !!!SUCCESS!!! =====\n\n");
 });
 
 app.listen(port, () => console.log("Server started on port:", port));
