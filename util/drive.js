@@ -56,8 +56,8 @@ async function driveUpload(filepath, email) {
             }
         });
     
-        console.log("File uploaded and shared successfully!")
-		return 200;
+        console.log("File uploaded and shared successfully!");
+        return 200;
     } catch (err) {
         console.error("Error uploading file: ", err);
         return 500;
