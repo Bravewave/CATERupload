@@ -14,7 +14,7 @@ const { generateMail } = require("./util/mail");
 const port = process.env.PORT || 3000;
 const app = express();
 
-const framerate = 1;
+const framerate = 24;
 
 // Setup multer storage settings
 const storage = multer.diskStorage({
@@ -35,10 +35,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/upload", upload.single("videoFile"), async (req, res) => {
-    res.json({
-        message: "Thank you for your submission!",
-        email: req.body.email
-    });
+    res.json({ message: "Thank you for your submission! You will receive an email with a link to the processed video soon!" });
 
     console.log("\n\n===== BEGIN SUBMISSION PREPROCESSING =====\n\n");
 
