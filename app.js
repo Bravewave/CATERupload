@@ -79,6 +79,7 @@ app.post("/upload", upload.single("videoFile"), async (req, res) => {
             console.log("Attempting to send email...");
             transporter.sendMail(mailOptions);
             console.log("Email sent successfully!");
+            console.log("\n\n===== !!!SUCCESS!!! =====\n\n");
         } catch (err) {
             console.error("Error with email:", err);
             return;
@@ -86,8 +87,6 @@ app.post("/upload", upload.single("videoFile"), async (req, res) => {
     } catch (err) {
         console.error("Error with Google Drive upload process:", err);
     }
-
-    console.log("\n\n===== !!!SUCCESS!!! =====\n\n");
 });
 
 app.listen(port, () => console.log("Server started on port:", port));
