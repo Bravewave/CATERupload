@@ -4,7 +4,8 @@
   "description": "An upload portal for CATER users to submit videos",
   "main": "app.js",
   "scripts": {
-    "start": "node --env-file=util/.env app.js"
+    "start": "node --env-file=util/.env app.js",
+    "dev": "nodemon --env-file=util.env --ext js,html,css,env app.js"
   },
   "author": "Kiran Da Costa",
   "license": "ISC",
