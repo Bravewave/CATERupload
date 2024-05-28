@@ -10,7 +10,7 @@ More information can be found on CATER's [GitHub repository](https://github.com/
 
 ## Prerequisites
 
-This implementation has been built and tested on Ubuntu 22.04 Jammy Jellyfish, and while alternative versions of it **may** work, the Ubuntu operating system is required for operation. You must be running Node.js v20.6.0 or higher, have installed FFMPEG, and have installed CATER via the instructions in the repo linked above.
+This implementation has been built and tested on Ubuntu 22.04 Jammy Jellyfish, and while alternative versions of it *may* work, the Ubuntu operating system is required for operation. You must be running Node.js v20.6.0 or higher, have installed FFMPEG, and have installed CATER via the instructions in the repo linked above.
 
 ## Project Hierarchy
 
