@@ -7,3 +7,21 @@ CATER (Combined Animal Tracking & Environment Reconstruction) is a computer visi
 The software is designed by computer scientists to solve a technical problem and as a result its barrier to entry limits its appeal to its target audience (that being researchers and scientists in the field, as well as roboticists). This project is a proof-of-concept showing that it is possible to employ a remote solution for interfacing with the CATER software, thereby making it a far more widely accessible tool.
 
 More information can be found on CATER's [GitHub repository](https://github.com/LarsHaalck/CATER) and [its paper](https://www.science.org/doi/10.1126/scirobotics.adg3679) in Science Advances journal.
+
+## Missing Files
+
+### Google JWT Authentication
+This project uses JWT authentication for Google APIs. For obvious reasons, the token used for the project is not stored in this repository. If cloning this project, one ought to be generated using the Google Cloud Console, the JSON file renamed to `auth.json`, and that file placed within a directory at the root level named `auth/`.
+
+### Environment Variables
+This project sues
+
+## Project Hierarchy
+
+The project consists of 4 main directories: the root directory, where the app entry point, Git files and required NPM package files are stored; `public/`, where the static frontend pages are stored; `uploads/`, an (initally) empty directory in which the app will store uploaded videos; and `util/` where all helper functionality is neatly abstracted away for readability and ease of editing.
+
+### cli.js
+Deals with all command line interfacing, using [ShellJS](https://www.npmjs.com/package/shelljs). The user's video must first be processed by FFMPEG, then by CATER.
+
+### drive.js
+Deals with Google Drive authentication and uploading
