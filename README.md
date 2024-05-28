@@ -16,7 +16,7 @@ The project consists of 4 main directories: the root directory, where the app en
 Deals with all command line interfacing, using [ShellJS](https://www.npmjs.com/package/shelljs). The user's video must first be processed by FFMPEG, then by CATER.
 
 ### drive.js
-Deals with Google Drive authentication and uploading. This requires a JWT (JSON Web Token) auth file - see below for details.
+Deals with Google Drive authentication and uploading using [googleapis](https://www.npmjs.com/package/googleapis). This requires a JWT (JSON Web Token) auth file - see below for details.
 
 ### mail.js
 Deals with sending the confirmation email using [nodemailer](https://www.nodemailer.com/). This requires the generation of an App Password for the sender's Google Account - see below for details.
