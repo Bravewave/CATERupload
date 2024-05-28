@@ -1,0 +1,20 @@
+{
+  "name": "uploadapp",
+  "version": "1.0.0",
+  "description": "An upload portal for CATER users to submit videos",
+  "main": "app.js",
+  "scripts": {
+    "start": "node --env-file=util/.env app.js",
+    "dev": "nodemon --env-file=util/.env --ext js,html,css,env app.js"
+  },
+  "author": "Kiran Da Costa",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "googleapis": "^135.0.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.13",
+    "shelljs": "^0.8.5"
+  }
+}
